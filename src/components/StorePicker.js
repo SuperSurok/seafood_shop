@@ -13,11 +13,6 @@ class StorePicker extends Component {
         this.props.history.push(`/store/${storeName}`)
     };
 
-    componentDidMount() {
-        console.log("Mounted!!!");
-        console.log(this);
-    }
-
     render() {
         return (
             <form className="store-selector" onSubmit={this.goToStore}>
