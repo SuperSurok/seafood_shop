@@ -26,7 +26,6 @@ class App extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.order);
         localStorage.setItem(
             this.props.match.params.storeId,
             JSON.stringify(this.state.order)
@@ -46,6 +45,15 @@ class App extends Component {
         this.setState({
             fishes: fishes
         });
+    };
+
+    updateFish = (key, updateFish) => {
+        // 1. Take a copy of the current state
+        const fishes = {...this.state.fishes};
+        // 2. Update that state
+        fishes[key] = updateFish;
+        // 3. Set that to state
+        this.setState({fishes});
     };
 
     loadSampleFishes = () => {
@@ -80,7 +88,9 @@ class App extends Component {
                 <Order fishes={this.state.fishes} order={this.state.order}/>
                 <Inventory
                     addFish={this.addFish}
+                    updateFish={this.updateFish}
                     loadSampleFishes={this.loadSampleFishes}
+                    fishes={this.state.fishes}
                 />
             </div>
         );
